@@ -1,4 +1,6 @@
-const StatusMessage = ({ winner, isXNext, squares }) => {
+const StatusMessage = ({ winner, gamingBoard }) => {
+  const { squares, isXNext } = gamingBoard;
+
   //checking square if there is no more moves for draw or a winner
   const noMovesLeft = squares.every(squareValue => squareValue !== null);
   //provide message who's turn X or O

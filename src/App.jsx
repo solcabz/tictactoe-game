@@ -2,41 +2,70 @@ import './styles.scss';
 import { useState } from 'react';
 import Board from './components/Board';
 import StatusMessage from './components/StatusMessage';
+import History from './components/History';
 import { calculateWinner } from './winner';
 
 function App() {
-  //state where the square box is value empty
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [isXNext, setXNext] = useState(false);
+  const [history, setHistory] = useState([
+    { squares: Array(9).fill(null), isXNext: false },
+  ]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const gamingBoard = history[currentMove];
 
   //calculates winner tru winner.js
-  const winner = calculateWinner(squares);
+  const winner = calculateWinner(gamingBoard.squares);
 
-  const handleSquareClick = clickPosition => {
+  const handleSquareClick = clickedPosition => {
     //condition if the square box has valued it stayed as its current state
-    if (squares[clickPosition] || winner) {
+    if (gamingBoard.squares[clickedPosition] || winner) {
       return;
     }
 
     //function if the square box is null it place the value of O or X vice versa
-    setSquares(currentSquares => {
-      return currentSquares.map((squareValue, position) => {
-        if (clickPosition === position) {
-          return isXNext ? 'X' : 'O';
+    setHistory(currentHistory => {
+      const isTraversing = currentMove + 1 !== currentHistory.length;
+
+      const lastGamingState = isTraversing
+        ? currentHistory[currentMove]
+        : history[history.length - 1];
+
+      const nextSquareState = lastGamingState.squares.map(
+        (squareValue, position) => {
+          if (clickedPosition === position) {
+            return lastGamingState.isXNext ? 'X' : 'O';
+          }
+          return squareValue;
         }
-        return squareValue;
+      );
+
+      const base = isTraversing
+        ? currentHistory.slice(0, currentHistory.indexOf(lastGamingState) + 1)
+        : currentHistory;
+
+      return base.concat({
+        squares: nextSquareState,
+        isXNext: !lastGamingState.isXNext,
       });
     });
 
     //function if the square box is null it place the value of O or X as its next move
-    setXNext(currentXNext => !currentXNext);
+    setCurrentMove(move => move + 1);
+  };
+
+  const moveTo = move => {
+    setCurrentMove(move);
   };
 
   return (
     <>
       <div className="app">
-        <StatusMessage winner={winner} isXNext={isXNext} squares={squares} />
-        <Board squares={squares} handleSquareClick={handleSquareClick} />
+        <StatusMessage winner={winner} gamingBoard={gamingBoard} />
+        <Board
+          squares={gamingBoard.squares}
+          handleSquareClick={handleSquareClick}
+        />
+        <h2>Game History</h2>
+        <History history={history} moveTo={moveTo} currentMove={currentMove} />
       </div>
     </>
   );
