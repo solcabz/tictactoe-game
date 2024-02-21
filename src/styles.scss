@@ -78,17 +78,26 @@ button {
 }
 
 .btn-reset {
-  font-size: 0.8rem;
-  color: #fff;
+  font-size: 2rem;
+  color: #2b2b2b;
   border-radius: 15px;
   padding: 12px 18px;
   margin-top: 25px;
   transition: all 0.2s;
-  background-color: $blue;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 199, 42, 1) 35%,
+    rgba(241, 255, 0, 1) 100%
+  );
   box-shadow: 0px 0px 0px 1px $orange;
   &.active {
-    background-color: $orange;
-    box-shadow: none;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 199, 42, 1) 35%,
+      rgba(241, 255, 0, 1) 100%
+    );
+    color: #2b2b2b;
+    box-shadow: 0px 0px 0px 1px #2b2b2b;
   }
 }
 
