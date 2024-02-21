@@ -13,7 +13,7 @@ function App() {
   const gamingBoard = history[currentMove];
 
   //calculates winner tru winner.js
-  const winner = calculateWinner(gamingBoard.squares);
+  const { winner, winningSquare } = calculateWinner(gamingBoard.squares);
 
   const handleSquareClick = clickedPosition => {
     //condition if the square box has valued it stayed as its current state
@@ -68,6 +68,7 @@ function App() {
         <Board
           squares={gamingBoard.squares}
           handleSquareClick={handleSquareClick}
+          winningSquare={winningSquare}
         />
         <button type="button" className="btn-reset" onClick={onGameRestart}>
           {/* {`btn-reset ${winner ? 'active' : ''}`} */}
