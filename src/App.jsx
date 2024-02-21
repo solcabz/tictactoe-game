@@ -64,6 +64,10 @@ function App() {
   return (
     <>
       <div className="app">
+        <h1>
+          <span className="text-green">TIC</span> TAC{' '}
+          <span className="text-orange">TOE</span>
+        </h1>
         <StatusMessage winner={winner} gamingBoard={gamingBoard} />
         <Board
           squares={gamingBoard.squares}
@@ -74,7 +78,7 @@ function App() {
           {/* {`btn-reset ${winner ? 'active' : ''}`} */}
           Start New Game
         </button>
-        <h2>Game History</h2>
+        <h2 style={{ fontWeight: 'normal' }}>Game History</h2>
         <History history={history} moveTo={moveTo} currentMove={currentMove} />
       </div>
     </>

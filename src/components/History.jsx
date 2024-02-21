@@ -8,6 +8,9 @@ const History = ({ history, moveTo, currentMove }) => {
             <li key={index}>
               <button
                 type="button"
+                style={{
+                  fontWeight: currentMove === index ? 'bold' : 'normal',
+                }}
                 className={`btn-move ${currentMove === index ? 'active' : ''}`}
                 onClick={() => moveTo(index)}
               >
