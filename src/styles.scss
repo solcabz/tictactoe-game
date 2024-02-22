@@ -21,6 +21,7 @@ button {
 
 .app {
   font-size: 20px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,7 +103,6 @@ button {
 }
 
 .board {
-  padding: 20px 5px;
   .board-row {
     display: flex;
     flex-direction: row;
@@ -136,34 +136,6 @@ button {
         }
       }
     }
-  }
-}
-
-$breakpoint-tablet: 768px;
-@media (min-width: $breakpoint-tablet) {
-  .app {
-    width: 100%;
-  }
-  .square {
-    width: 80px;
-    height: 80px;
-  }
-  .board {
-    padding: 15px 3px;
-  }
-}
-
-$breakpoint-mobile: 560px;
-@media (min-width: $breakpoint-tablet) {
-  .app {
-    width: 100%;
-  }
-  .square {
-    width: 50px;
-    height: 50px;
-  }
-  .board {
-    padding: 15px 0px;
   }
 }
 
@@ -213,7 +185,6 @@ $breakpoint-mobile: 560px;
 /* footer section styling */
 footer {
   border-top: 1px solid #ffc72a;
-  padding: 15px 23px;
   color: var(--text-color);
   width: 100%;
   text-align: center;
