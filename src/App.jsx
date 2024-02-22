@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Board from './components/Board';
 import StatusMessage from './components/StatusMessage';
 import History from './components/History';
+import Footer from './components/Footer';
 import { calculateWinner } from './winner';
 
 const NEWGAME = [{ squares: Array(9).fill(null), isXNext: false }];
@@ -80,6 +81,7 @@ function App() {
         </button>
         <h2 style={{ fontWeight: 'normal' }}>Game History</h2>
         <History history={history} moveTo={moveTo} currentMove={currentMove} />
+        <Footer />
       </div>
     </>
   );
