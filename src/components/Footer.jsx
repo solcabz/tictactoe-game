@@ -6,7 +6,7 @@ const Footer = () => {
         <a href="https://github.com/solcabz" target="_blank" rel="noreferrer">
           Solcabz
         </a>{' '}
-        | <span>@</span> 2023 All rights reserved.
+        | <span>@</span> 2024 All rights reserved.
       </span>
     </footer>
   );
